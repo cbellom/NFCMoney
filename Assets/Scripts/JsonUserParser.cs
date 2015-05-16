@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using MiniJSON;
 
-public class JsonWordsParser  {
+public class JsonUserParser  {
 
-	private int levelFilter; 
 	private UserData data;
 
 	public UserData Data {
