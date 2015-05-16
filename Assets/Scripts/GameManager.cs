@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour {
 	private GameObject recharge;
 	[SerializeField]
 	private GameObject pay;
+	[SerializeField]
+	private GameObject PayMent;
+
 
 	void Start () {
 	}
@@ -22,29 +25,39 @@ public class GameManager : MonoBehaviour {
 			Application.Quit (); 
 
 		if (gameState.GameState == GameState.Main) {
-			main.SetActive(true);
 			history.SetActive(false);
 			recharge.SetActive(false);
 			pay.SetActive(false);
+			PayMent.SetActive(false);
+			main.SetActive(true);
 		}
 		if(gameState.GameState == GameState.History) {
 			main.SetActive(false);
-			history.SetActive(true);
 			recharge.SetActive(false);
 			pay.SetActive(false);
+			PayMent.SetActive(false);
+			history.SetActive(true);
 		}
 
 		if(gameState.GameState == GameState.Recharge) {
 			main.SetActive(false);
 			history.SetActive(false);
-			recharge.SetActive(true);
 			pay.SetActive(false);
+			PayMent.SetActive(false);
+			recharge.SetActive(true);
 		}
 		if(gameState.GameState == GameState.Pay) {
 			main.SetActive(false);
 			history.SetActive(false);
 			recharge.SetActive(false);
+			PayMent.SetActive(false);
 			pay.SetActive(true);
+		}
+		if(gameState.GameState == GameState.PayMent) {
+			main.SetActive(false);
+			history.SetActive(false);
+			recharge.SetActive(false);
+			PayMent.SetActive(true);
 		}
 	}
 
