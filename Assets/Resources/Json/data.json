@@ -1,8 +1,7 @@
-[
     {
         "id": 1,
 		"amount": 1000,
-		"phone": +57 10000001,
+		"phone": "+57 10000001",
         "transactions": [
 			{
 				"id": 1,
@@ -21,4 +20,4 @@
 				"currency": "COP",
 			},
         ]
-]
+	}
