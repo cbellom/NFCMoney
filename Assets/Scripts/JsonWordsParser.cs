@@ -30,14 +30,14 @@ public class JsonWordsParser  {
 
 	private UserData CreateUserDataObject (Dictionary<string, object> user)	{
 		UserData data = new UserData ();
-		data.id = user ["id"].ToString() as int;
-		data.amount = user ["amount"].ToString() as double;
-		data.phone = user ["phone"].ToString() as double;
+		data.id = int.Parse(user ["id"].ToString());
+		data.amount = double.Parse( user ["amount"].ToString() );
+		data.phone = int.Parse(user ["phone"].ToString());
 		data.transactions = CreateTransactionList( user["transactions"] as List<object>);
 		return data;
 	}
 	
-	private List<string> CreateTransactionList (List<object> transactions)	{
+	private List<TransactionData> CreateTransactionList (List<object> transactions)	{
 		List<TransactionData> transactionsList = new List<TransactionData> ();
 		foreach(Dictionary<string, object> transaction in transactions){
 			transactionsList.Add(CreateTransactionObject(transaction));
@@ -47,12 +47,12 @@ public class JsonWordsParser  {
 
 	private TransactionData CreateTransactionObject (Dictionary<string, object> transaction)	{
 		TransactionData data = new TransactionData ();
-		data.id = transaction ["id"].ToString() as int;
-		data.reference = transaction ["reference"].ToString() as double;
-		data.type = transaction ["type"].ToString() as double;
-		data.state = transaction ["state"].ToString() as double;
-		data.value = transaction ["value"].ToString() as double;
-		data.currency = transaction ["currency"].ToString() as double;
+		data.id = int.Parse(transaction ["id"].ToString());
+		data.reference = transaction ["reference"].ToString();
+		data.type = transaction ["type"].ToString();
+		data.state = transaction ["state"].ToString();
+		data.value = double.Parse(transaction ["value"].ToString());
+		data.currency = transaction ["currency"].ToString();
 		return data;
 	}
 }
