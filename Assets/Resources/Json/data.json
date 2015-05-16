@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+		"amount": 1000,
+		"phone": +57 10000001,
+        "transactions": [
+			{
+				"id": 1,
+				"reference": "+57 10000001-1",
+				"type": "social",
+				"state": "todo",
+				"value": 100,
+				"currency": "COP",
+			},
+			{
+				"id": 2,
+				"reference": "+57 10000001-2",
+				"type": "food",
+				"state": "done",
+				"value": 100,
+				"currency": "COP",
+			},
+        ]
+]

@@ -31,7 +31,7 @@ public class JsonUserParser  {
 		UserData data = new UserData ();
 		data.id = int.Parse(user ["id"].ToString());
 		data.amount = double.Parse( user ["amount"].ToString() );
-		data.phone = int.Parse(user ["phone"].ToString());
+		data.phone = user ["phone"].ToString();
 		data.transactions = CreateTransactionList( user["transactions"] as List<object>);
 		return data;
 	}
