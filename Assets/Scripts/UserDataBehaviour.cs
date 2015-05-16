@@ -10,9 +10,12 @@ public class UserDataBehaviour : MonoBehaviour {
 	}
 
 	private void ReadDataFromJson (){
+		// TODO get from WebService
+		//Local
 		JsonUserParser parser = new JsonUserParser();
 		data = new UserData ();
 		parser.JSONString = json.text;
 		data = parser.Data;
+		UserPersistence.Save (data);
 	}
 }
