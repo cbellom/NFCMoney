@@ -4,5 +4,6 @@ using System.Collections;
 public enum GameState {
 	Main,
 	History,
-	Recharge
+	Recharge,
+	Pay
 }
