@@ -9,9 +9,9 @@ public class GeneratePay : MonoBehaviour {
 	public InputField InputFieldAmount;
 	public Button buttonSave;
 	public Button buttonEmail;
-	public Sprite imageQR;
+	public Image imageQR;
 	public UserDataBehaviour userDataBehaviour;
-	public Texture2D texture;
+	private Texture2D texture;
 	
 	// Use this for initialization
 	void Start () {
@@ -112,30 +112,31 @@ public class GeneratePay : MonoBehaviour {
 		Debug.Log(userdata.amount);
 	}
 
-	private IEnumerator GetQRCodeToFindTransaction(TransactionData data){
+	/*private IEnumerator GetQRCodeToFindTransaction(TransactionData data){
 		string url = "http://qrickit.com/api/qr?d="+GameSettings.Instance.findTransactionURL+"?reference="+WWW.EscapeURL (data.reference);
 		Texture2D texture = new Texture2D(1,1);
 		WWW www = new WWW(url);
 		yield return www;
 		www.LoadImageIntoTexture(texture);
-		
+		Debug.Log ("GetQRCodeToFindTransaction aqui toy");
 		Sprite image = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-		imageQR = image;
-	}
+        imageQR.sprite = image;
+	}*/
 
 	private IEnumerator GetQRCodeToFindTransaction12312(TransactionData data){
+		Debug.Log ("aaaaaaaaaaaaaaaaaaaaaaaaaa");
 		string url = "http://qrickit.com/api/qr?d="+GameSettings.Instance.findTransactionURL+"?reference="+WWW.EscapeURL (data.reference);
-
+		Debug.Log (url);
 		texture = new Texture2D(4, 4, TextureFormat.DXT1, false);
 		while(true) {
 			// Start a download of the given URL
 			WWW www = new WWW(url);
-			
 			// wait until the download is done
 			yield return www;
-			
+			Debug.Log ("ss"+www);
 			// assign the downloaded image to the main texture of the object
-			www.LoadImageIntoTexture(texture);
+			Sprite img =Sprite.Create(www.texture, new Rect(0, 0, 150, 150), new Vector2(0.5f, 0.5f)); 
+			imageQR.sprite = img;
 		}
 	}
 
