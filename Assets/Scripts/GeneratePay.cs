@@ -9,10 +9,9 @@ public class GeneratePay : MonoBehaviour {
 	public InputField InputFieldAmount;
 	public Button buttonSave;
 	public Button buttonEmail;
+	public Sprite imageQR;
 	public UserDataBehaviour userDataBehaviour;
-
-
-
+	public Texture2D texture;
 	
 	// Use this for initialization
 	void Start () {
@@ -41,8 +40,6 @@ public class GeneratePay : MonoBehaviour {
 				if(AmountislessToAmountUser(userDataBehaviour.data,System.Convert.ToDouble(InputFieldAmount.text)) == true){
 					transdata.value = System.Convert.ToDouble(InputFieldAmount.text);
 					transdata.currency = "COP";
-//					transdata.id = "1";
-					transdata.reference = "102297798";
 					transdata.state = "todo";
 					transdata.typeService = "food";
 					transdata.day = System.DateTime.Now.ToString("d-MMM-yyyy-HH-mm-ss-f");
@@ -109,7 +106,38 @@ public class GeneratePay : MonoBehaviour {
 		userdata.transactions.Add(transaction);
 		UpdateAmountUser(userdata,transaction);
 		userDataBehaviour.Save (userdata);
+
+		StartCoroutine(GetQRCodeToFindTransaction12312 (transaction));
+
 		Debug.Log(userdata.amount);
 	}
 
+	private IEnumerator GetQRCodeToFindTransaction(TransactionData data){
+		string url = "http://qrickit.com/api/qr?d="+GameSettings.Instance.findTransactionURL+"?reference="+WWW.EscapeURL (data.reference);
+		Texture2D texture = new Texture2D(1,1);
+		WWW www = new WWW(url);
+		yield return www;
+		www.LoadImageIntoTexture(texture);
+		
+		Sprite image = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+		imageQR = image;
+	}
+
+	private IEnumerator GetQRCodeToFindTransaction12312(TransactionData data){
+		string url = "http://qrickit.com/api/qr?d="+GameSettings.Instance.findTransactionURL+"?reference="+WWW.EscapeURL (data.reference);
+
+		texture = new Texture2D(4, 4, TextureFormat.DXT1, false);
+		while(true) {
+			// Start a download of the given URL
+			WWW www = new WWW(url);
+			
+			// wait until the download is done
+			yield return www;
+			
+			// assign the downloaded image to the main texture of the object
+			www.LoadImageIntoTexture(texture);
+		}
+	}
+
+	
 }
