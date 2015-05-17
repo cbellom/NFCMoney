@@ -9,5 +9,7 @@ public class TransactionData {
 	public string type;
 	public string state;
 	public double value;
-	public string currency; 
+	public string currency;
+	public string day;
+	public string description;
 }
