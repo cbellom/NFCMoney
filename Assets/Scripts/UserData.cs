@@ -9,4 +9,13 @@ public class UserData  {
 	public string phone;
 	public double amount;
 	public List<TransactionData> transactions;
+
+	public double getamount()
+	{
+		return this.amount;
+	}
+	public void Setamount(double SetAmount)
+	{
+		this.amount = SetAmount;
+	}
 }

@@ -5,7 +5,8 @@ using System.Collections;
 [Serializable]
 public class TransactionData {
 	public int id;
-	public string reference;
+	public string reference;//phone
+	public string typetransaction;
 	public string type;
 	public string state;
 	public double value;
