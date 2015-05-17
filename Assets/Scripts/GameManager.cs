@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	void Update(){
+
 		if (Input.GetKeyDown (KeyCode.Escape)) 
 			Application.Quit (); 
 
@@ -30,8 +31,10 @@ public class GameManager : MonoBehaviour {
 			pay.SetActive(false);
 			PayMent.SetActive(false);
 			main.SetActive(true);
+
 		}
 		if(gameState.GameState == GameState.History) {
+
 			main.SetActive(false);
 			recharge.SetActive(false);
 			pay.SetActive(false);
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if(gameState.GameState == GameState.Recharge) {
+
 			main.SetActive(false);
 			history.SetActive(false);
 			pay.SetActive(false);
@@ -47,6 +51,7 @@ public class GameManager : MonoBehaviour {
 			recharge.SetActive(true);
 		}
 		if(gameState.GameState == GameState.Pay) {
+
 			main.SetActive(false);
 			history.SetActive(false);
 			recharge.SetActive(false);
@@ -54,6 +59,7 @@ public class GameManager : MonoBehaviour {
 			pay.SetActive(true);
 		}
 		if(gameState.GameState == GameState.PayMent) {
+		
 			main.SetActive(false);
 			history.SetActive(false);
 			recharge.SetActive(false);

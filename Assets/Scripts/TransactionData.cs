@@ -4,7 +4,7 @@ using System.Collections;
 
 [Serializable]
 public class TransactionData {
-	public int id;
+	public String id;
 	public string reference;//phone
 	public string typetransaction;
 	public string type;

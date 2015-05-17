@@ -46,7 +46,7 @@ public class JsonUserParser  {
 
 	private TransactionData CreateTransactionObject (Dictionary<string, object> transaction)	{
 		TransactionData data = new TransactionData ();
-		data.id = int.Parse(transaction ["id"].ToString());
+		data.id = transaction ["id"].ToString();
 		data.reference = transaction ["reference"].ToString();
 		data.type = transaction ["type"].ToString();
 		data.state = transaction ["state"].ToString();
