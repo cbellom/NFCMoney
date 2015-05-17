@@ -38,9 +38,8 @@ public class GenerateRechange : MonoBehaviour {
 		TransactionData transdata = new TransactionData ();
 		try{
 
-			if( InputFieldamount.text != "" || InputFieldIDuser.text != ""||InputFieldPhone.text != "" || InputFieldIDuser.text != "")
+			if( InputFieldamount.text != "" || InputFieldIDuser.text != ""||InputFieldPhone.text != "" || InputFieldIDuser.text != "")//Validar el Banco
 			{
-				Debug.Log("Aqui ot");
 				transdata.value = System.Convert.ToDouble(InputFieldamount.text);
 				transdata.currency = "COP";
 				transdata.id =InputFieldIDuser.text;
@@ -56,7 +55,7 @@ public class GenerateRechange : MonoBehaviour {
 			}
 			else
 			{
-				Debug.Log("Enter the correct data amonunt "+InputFieldamount.text +"user"+ InputFieldIDuser.text + "phone"+InputFieldPhone.text + "iduser"+InputFieldIDuser.text);
+				Debug.Log("Enter the correct");
 			}
 		}catch {
 			Debug.Log("Error Createtransantion");

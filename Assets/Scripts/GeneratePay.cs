@@ -35,19 +35,26 @@ public class GeneratePay : MonoBehaviour {
 		TransactionData transdata = new TransactionData ();
 		try{
 	
-			transdata.value = 1f;
+			if( InputFieldAmount.text != "" )//Validar el Banco
+			{
+			transdata.value = System.Convert.ToDouble(InputFieldAmount.text);
 			transdata.currency = "COP";
 			transdata.id = "1";
 			transdata.reference = "102297798";
 			transdata.state = "todo";
 			transdata.type = "food";
-			transdata.day = "00/00/0000";
+			transdata.day = System.DateTime.Now.ToString("d-MMM-yyyy-HH-mm-ss-f");
 			transdata.description = "vaca yisus";	
 			transdata.typetransaction ="Pay";
 			userdata.transactions.Add(transdata);
 			userdata.Setamount(userdata.getamount()-transdata.value);
 			userDataBehaviour.Save (userdata);
 			Debug.Log(userdata.amount);
+			}
+			else{
+				Debug.Log("Enter the correct");
+			}
+
 		}catch{
 			Debug.Log("Error Createtransantion");
 		}
