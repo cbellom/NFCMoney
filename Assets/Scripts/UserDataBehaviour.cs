@@ -5,15 +5,11 @@ public class UserDataBehaviour : MonoBehaviour {
 	public TextAsset json;
 	public UserData data = new UserData();
 
-	public string getUserDataURL = "http://dev.ateos.co/Transacciones/web/app_dev.php/servicio/getUserData";
-
 	void Awake(){
 		StartCoroutine(LoadUserData());
 	}
 
 	private void ReadDataFromJson (string json){
-		// TODO get from WebService
-		//Local
 		JsonUserParser parser = new JsonUserParser();
 		data = new UserData ();
 		parser.JSONString = json;
@@ -22,7 +18,7 @@ public class UserDataBehaviour : MonoBehaviour {
 	}
 
 	private IEnumerator LoadUserData(){
-		string url = getUserDataURL + "?userId=1&phone=angie";
+		string url = GameSettings.Instance.getUserDataURL + "?phone="+WWW.EscapeURL (GameSettings.Instance.phoneNumber);
 		Debug.Log ("Get data from " + url);
 		WWW getData = new WWW (url);
 		yield return getData;

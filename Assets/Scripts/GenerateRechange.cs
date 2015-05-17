@@ -27,12 +27,12 @@ public class GenerateRechange : MonoBehaviour {
 	void Awake()
 	{
 		ButtonRechange.onClick.AddListener (delegate {
-			Createtransantion();
+			CreateTransantion();
 
 		});
 	}
 
-	public void Createtransantion ()	{
+	public void CreateTransantion ()	{
 		userDataBehaviour.Load ();
 		UserData userdata = UserPersistence.userData;
 		TransactionData transdata = new TransactionData ();
@@ -52,8 +52,7 @@ public class GenerateRechange : MonoBehaviour {
 				userdata.Setamount(userdata.getamount()+transdata.value);
 				userDataBehaviour.Save (userdata);
 				Debug.Log("Monto"+ userdata.amount+ transdata.day);
-			}
-			else
+			} else
 			{
 				Debug.Log("Enter the correct");
 			}
