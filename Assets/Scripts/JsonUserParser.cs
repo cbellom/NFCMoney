@@ -52,7 +52,7 @@ public class JsonUserParser  {
 		data.state = transaction ["state"].ToString();
 		data.value = double.Parse(transaction ["value"].ToString());
 		data.currency = transaction ["currency"].ToString();
-		data.day = transaction ["day"].ToString();
+		data.day = transaction ["date"].ToString();
 		data.description = transaction ["description"].ToString();
 		return data;
 	}
