@@ -20,13 +20,12 @@ public class JsonTransactionParser {
 		}
 	}
 
-	
 	private TransactionData CreateTransactionDataObject (Dictionary<string, object> transaction)	{
 		TransactionData data = new TransactionData ();
 		data.id = transaction ["id"].ToString();
 		data.reference = transaction ["reference"].ToString();
-		data.typetransaction = transaction ["typetransaction"].ToString();
-		data.type =  transaction ["typeService"].ToString();
+		data.typeTransaction = transaction ["typetransaction"].ToString();
+		data.typeService =  transaction ["typeService"].ToString();
 		data.state = transaction ["state"].ToString();
 		data.value = double.Parse( transaction ["value"].ToString());
 		data.currency = transaction ["currency"].ToString();

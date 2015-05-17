@@ -48,8 +48,8 @@ public class JsonUserParser  {
 		TransactionData data = new TransactionData ();
 		data.id = transaction ["id"].ToString();
 		data.reference = transaction ["reference"].ToString();
-		data.typetransaction = "default";
-		data.type =  transaction ["type"].ToString();
+		data.typeTransaction = "default";
+		data.typeService =  transaction ["type"].ToString();
 		data.state = transaction ["state"].ToString();
 		data.value = double.Parse(transaction ["value"].ToString());
 		data.currency = transaction ["currency"].ToString();

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -45,8 +45,8 @@ public class GenerateRechange : MonoBehaviour {
 				transdata.id =InputFieldIDuser.text;
 				transdata.reference =InputFieldPhone.text; 
 				transdata.state = "done";
-				transdata.type = "Bank";
-				transdata.typetransaction ="Rechangue";
+				transdata.typeService = "Bank";
+				transdata.typeTransaction ="Rechangue";
 				transdata.day = System.DateTime.Now.ToString("d-MMM-yyyy-HH-mm-ss-f");
 				userdata.transactions.Add(transdata);
 				userdata.Setamount(userdata.getamount()+transdata.value);

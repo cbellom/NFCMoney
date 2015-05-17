@@ -33,26 +33,24 @@ public class GeneratePay : MonoBehaviour {
 
 	public void Createtransantion ()	{
 
-		try{
+//		try{
 			userDataBehaviour.Load();
-			UserData userdata = UserPersistence.userData;
 			TransactionData transdata = new TransactionData();
 			if( InputFieldAmount.text != "" )//Validar el Banco
 			{
-				if(AmountislessToAmountUser(userdata,System.Convert.ToDouble(InputFieldAmount.text)) == true){
+				if(AmountislessToAmountUser(userDataBehaviour.data,System.Convert.ToDouble(InputFieldAmount.text)) == true){
 					transdata.value = System.Convert.ToDouble(InputFieldAmount.text);
 					transdata.currency = "COP";
 					transdata.id = "1";
 					transdata.reference = "102297798";
 					transdata.state = "todo";
-					transdata.type = "food";
+					transdata.typeService = "food";
 					transdata.day = System.DateTime.Now.ToString("d-MMM-yyyy-HH-mm-ss-f");
 					transdata.description = "vaca yisus";	
-					transdata.typetransaction ="Pay";
-					userdata.transactions.Add(transdata);
-					UpdateAmountUser(userdata,transdata);
-					userDataBehaviour.Save (userdata);
-					Debug.Log(userdata.amount);
+					transdata.typeTransaction ="Pay";
+					transdata.targetUser ="angie";
+
+					StartCoroutine(RegisterTransactionOnServer(transdata));
 				}
 				else{
 					Debug.Log("You  hasn't money");
@@ -62,9 +60,9 @@ public class GeneratePay : MonoBehaviour {
 				Debug.Log("Enter the correct");
 			}
 
-		}catch{
-			Debug.Log("Error Createtransantion");
-		}
+//		}catch{
+//			Debug.Log("Error Createtransantion");
+//		}
 	}
 
 	public void UpdateAmountUser(UserData userdata, TransactionData transdata)
@@ -82,4 +80,35 @@ public class GeneratePay : MonoBehaviour {
 			return true;
 		}
 	}
+
+	private IEnumerator RegisterTransactionOnServer(TransactionData data){
+		string url = GameSettings.Instance.registerTransactionURL + 
+			"?ownerPhone="+ WWW.EscapeURL (GameSettings.Instance.phoneNumber)+
+			"&typeTransaction="+WWW.EscapeURL (data.typeTransaction)+
+			"&typeService="+WWW.EscapeURL (data.typeService)+
+			"&state="+WWW.EscapeURL (data.state)+
+			"&value="+WWW.EscapeURL (data.value.ToString())+
+			"&currency="+WWW.EscapeURL (data.currency)+
+			"&description="+WWW.EscapeURL (data.description)+
+			"&targetUserPhone="+WWW.EscapeURL (data.targetUser);
+		Debug.Log ("Send data to " + url);
+		WWW getData = new WWW (url);
+		yield return getData;
+		Debug.Log (getData.text);
+	}
+
+	
+	private void ReadDataFromJson (string json){
+		JsonTransactionParser parser = new JsonTransactionParser();
+		TransactionData transaction = new TransactionData ();
+		parser.JSONString = json;
+		transaction = parser.Data;
+		
+		UserData userdata = UserPersistence.userData;
+		userdata.transactions.Add(transaction);
+		UpdateAmountUser(userdata,transaction);
+		userDataBehaviour.Save (userdata);
+		Debug.Log(userdata.amount);
+	}
+
 }
