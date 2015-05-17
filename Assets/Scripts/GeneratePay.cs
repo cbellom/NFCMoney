@@ -41,7 +41,7 @@ public class GeneratePay : MonoBehaviour {
 				if(AmountislessToAmountUser(userDataBehaviour.data,System.Convert.ToDouble(InputFieldAmount.text)) == true){
 					transdata.value = System.Convert.ToDouble(InputFieldAmount.text);
 					transdata.currency = "COP";
-					transdata.id = "1";
+//					transdata.id = "1";
 					transdata.reference = "102297798";
 					transdata.state = "todo";
 					transdata.typeService = "food";
@@ -82,8 +82,8 @@ public class GeneratePay : MonoBehaviour {
 	}
 
 	private IEnumerator RegisterTransactionOnServer(TransactionData data){
-		string url = GameSettings.Instance.registerTransactionURL + 
-			"?ownerPhone="+ WWW.EscapeURL (GameSettings.Instance.phoneNumber)+
+		string url = GameSettings.Instance.registerTransactionURL + "?" +
+			"ownerPhone="+ WWW.EscapeURL (GameSettings.Instance.phoneNumber)+
 			"&typeTransaction="+WWW.EscapeURL (data.typeTransaction)+
 			"&typeService="+WWW.EscapeURL (data.typeService)+
 			"&state="+WWW.EscapeURL (data.state)+
