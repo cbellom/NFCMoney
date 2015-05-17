@@ -10,6 +10,8 @@ public class GeneratePay : MonoBehaviour {
 	public InputField InputFieldAmount;
 	public Button buttonSave;
 	public Button buttonEmail;
+	public UserDataBehaviour userDataBehaviour;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -27,17 +29,23 @@ public class GeneratePay : MonoBehaviour {
 		});
 	}
 
-	void Createtransantion ()
-	{
-		UserPersistence.Load ();
+	void Createtransantion ()	{
+		userDataBehaviour.Load ();
 		UserData userdata = UserPersistence.userData;
 		TransactionData transdata = new TransactionData ();
-		transdata.value = double.Parse(InputFieldAmount.text);
-		transdata.currency = "COP";
-		transdata.id = 1;
-		transdata.reference = "102297798";
-		transdata.state = "todo";
-		transdata.type = "food";
-		userdata.transactions.Add(transdata);
+		try{
+			transdata.value = 1f;
+			transdata.currency = "COP";
+			transdata.id = 1;
+			transdata.reference = "102297798";
+			transdata.state = "todo";
+			transdata.type = "food";
+			transdata.day = "00/00/0000";
+			transdata.description = "vaca yisus";	
+			userdata.transactions.Add(transdata);
+			userDataBehaviour.Save (userdata);
+		}catch{
+			Debug.Log("Error Createtransantion");
+		}
 	}
 }

@@ -18,4 +18,13 @@ public class UserDataBehaviour : MonoBehaviour {
 		data = parser.Data;
 		UserPersistence.Save (data);
 	}
+
+	public void Load(){
+		UserPersistence.Load ();
+	}
+
+	public void Save(UserData data){
+		this.data = data;
+		UserPersistence.Save (data);
+	}
 }
