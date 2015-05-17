@@ -6,6 +6,7 @@ public class UserDataBehaviour : MonoBehaviour {
 	public UserData data = new UserData();
 
 	void Awake(){
+		UserPersistence.ClearData ();
 		StartCoroutine(LoadUserData());
 	}
 

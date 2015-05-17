@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using MiniJSON;
@@ -48,7 +48,8 @@ public class JsonUserParser  {
 		TransactionData data = new TransactionData ();
 		data.id = transaction ["id"].ToString();
 		data.reference = transaction ["reference"].ToString();
-		data.type = transaction ["type"].ToString();
+		data.typetransaction = "default";
+		data.type =  transaction ["type"].ToString();
 		data.state = transaction ["state"].ToString();
 		data.value = double.Parse(transaction ["value"].ToString());
 		data.currency = transaction ["currency"].ToString();
