@@ -6,5 +6,6 @@ public enum GameState {
 	History,
 	Recharge,
 	Pay,
-	PayMent
+	PayMent,
+	DastPayMent
 }

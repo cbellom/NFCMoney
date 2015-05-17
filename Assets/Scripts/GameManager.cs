@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour {
 	private GameObject pay;
 	[SerializeField]
 	private GameObject PayMent;
-
+	[SerializeField]
+	private GameObject DatsPayMent;
 
 	void Start () {
 	}
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour {
 			history.SetActive(false);
 			pay.SetActive(false);
 			PayMent.SetActive(false);
+			DatsPayMent.SetActive(false);
 			recharge.SetActive(true);
 		}
 		if(gameState.GameState == GameState.Pay) {
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour {
 			history.SetActive(false);
 			recharge.SetActive(false);
 			PayMent.SetActive(false);
+			DatsPayMent.SetActive(false);
 			pay.SetActive(true);
 		}
 		if(gameState.GameState == GameState.PayMent) {
@@ -63,7 +66,17 @@ public class GameManager : MonoBehaviour {
 			main.SetActive(false);
 			history.SetActive(false);
 			recharge.SetActive(false);
+			DatsPayMent.SetActive(false);
 			PayMent.SetActive(true);
+		}
+		if(gameState.GameState == GameState.DastPayMent) {
+			
+			main.SetActive(false);
+			history.SetActive(false);
+			recharge.SetActive(false);
+			PayMent.SetActive(true);
+			DatsPayMent.SetActive(true);
+
 		}
 	}
 
