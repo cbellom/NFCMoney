@@ -24,12 +24,12 @@ public class JsonTransactionParser {
 		TransactionData data = new TransactionData ();
 		data.id = transaction ["id"].ToString();
 		data.reference = transaction ["reference"].ToString();
-		data.typeTransaction = transaction ["typetransaction"].ToString();
+		data.typeTransaction = transaction ["typeTransaction"].ToString();
 		data.typeService =  transaction ["typeService"].ToString();
 		data.state = transaction ["state"].ToString();
 		data.value = double.Parse( transaction ["value"].ToString());
 		data.currency = transaction ["currency"].ToString();
-		data.day = transaction ["day"].ToString();
+		data.day = transaction ["date"].ToString();
 		data.description = transaction ["description"].ToString();
 		return data;
 	}

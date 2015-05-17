@@ -48,7 +48,7 @@ public class GeneratePay : MonoBehaviour {
 					transdata.day = System.DateTime.Now.ToString("d-MMM-yyyy-HH-mm-ss-f");
 					transdata.description = "vaca yisus";	
 					transdata.typeTransaction ="Pay";
-					transdata.targetUser ="angie";
+					transdata.targetUser ="+573003268650";
 
 					StartCoroutine(RegisterTransactionOnServer(transdata));
 				}
@@ -95,10 +95,11 @@ public class GeneratePay : MonoBehaviour {
 		WWW getData = new WWW (url);
 		yield return getData;
 		Debug.Log (getData.text);
+		ReadDataFromJsonAndSaveLocalData (getData.text);
 	}
 
 	
-	private void ReadDataFromJson (string json){
+	private void ReadDataFromJsonAndSaveLocalData (string json){
 		JsonTransactionParser parser = new JsonTransactionParser();
 		TransactionData transaction = new TransactionData ();
 		parser.JSONString = json;
