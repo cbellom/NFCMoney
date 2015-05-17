@@ -12,6 +12,7 @@ public class HistoryBehaviour : MonoBehaviour {
 	public Sprite food;
 	public Sprite transport;	
 	public Sprite defaultIcon;
+	public Sprite bank;
 
 	public List<Color> colorByTransactionState;
 
@@ -31,10 +32,10 @@ public class HistoryBehaviour : MonoBehaviour {
 
 	private void DrawTransaction (TransactionData transaction){
 		GameObject newItem = Instantiate(panelPrefabTransaction) as GameObject;
-		newItem.transform.FindChild("Image").GetComponent<Image>().sprite = getImageByTransactionType(transaction.typeService);
+		newItem.transform.FindChild("Image").GetComponent<Image>().sprite = getImageByServiceType(transaction.typeService);
 		newItem.transform.FindChild ("Day").GetComponent<Text> ().text = transaction.day;
 		newItem.transform.FindChild ("Reference").GetComponent<Text> ().text = "Reference: " + transaction.reference;
-		newItem.transform.FindChild ("Value").GetComponent<Text> ().text = "$ " +transaction.value.ToString();
+		newItem.transform.FindChild ("Value").GetComponent<Text> ().text = getSingByTransactionType(transaction.typeTransaction)+" $ " +transaction.value.ToString();
 		newItem.GetComponent<Image> ().color = getColorByTransactionState (transaction.state);
 		newItem.transform.SetParent(listTransaction.gameObject.transform, false);	
 	}
@@ -53,7 +54,7 @@ public class HistoryBehaviour : MonoBehaviour {
 		return color;
 	}
 
-	private Sprite getImageByTransactionType(string type){
+	private Sprite getImageByServiceType(string type){
 		Sprite img;
 		if (type == "social") {
 			img = social;
@@ -61,9 +62,25 @@ public class HistoryBehaviour : MonoBehaviour {
 			img = food;
 		} else if (type == "transport") {
 			img = transport;
+		} else if (type == "bank") {
+			img = bank;
 		} else {
 			img = defaultIcon;
 		}
 		return img;
+	}
+
+	private string getSingByTransactionType(string type){
+		string a;
+		if (type == "pay") {
+			a = "-";
+		} else if (type == "rechangue") {
+			a = "-/+";
+		} else if (type == "in") {
+			a = "+";
+		} else {
+			a = "-/+";
+		}
+		return a;
 	}
 }

@@ -10,6 +10,8 @@ public class GeneratePay : MonoBehaviour {
 	public Button buttonSave;
 	public Button buttonEmail;
 	public Image imageQR;
+	public Text textTypeService;
+	public Text textTargetUser;
 	public UserDataBehaviour userDataBehaviour;
 	private Texture2D texture;
 	
@@ -30,6 +32,14 @@ public class GeneratePay : MonoBehaviour {
 		});
 	}
 
+	bool IsTypeValid ()	{
+		return textTypeService.text == "food" || textTypeService.text == "transport" || textTypeService.text == "social";
+	}
+
+	bool IsTargetValid ()	{
+		return textTargetUser.text != "Select or not a friend";
+	}
+
 	public void Createtransantion ()	{
 
 //		try{
@@ -41,11 +51,16 @@ public class GeneratePay : MonoBehaviour {
 					transdata.value = System.Convert.ToDouble(InputFieldAmount.text);
 					transdata.currency = "COP";
 					transdata.state = "todo";
-					transdata.typeService = "food";
+					if (IsTypeValid ())
+						transdata.typeService = textTypeService.text;
 					transdata.day = System.DateTime.Now.ToString("d-MMM-yyyy-HH-mm-ss-f");
 					transdata.description = "vaca yisus";	
-					transdata.typeTransaction ="Pay";
-					transdata.targetUser ="+573003268650";
+					transdata.typeTransaction ="pay";
+					
+					if(IsTargetValid())
+						transdata.targetUser =textTargetUser.text;
+					else 
+						return;
 
 					StartCoroutine(RegisterTransactionOnServer(transdata));
 				}

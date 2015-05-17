@@ -45,7 +45,7 @@ public class GenerateRecharge : MonoBehaviour {
 				transdata.reference =InputFieldPhone.text; 
 				transdata.state = "done";
 				transdata.typeService = "bank";
-				transdata.typeTransaction ="Rechangue";
+				transdata.typeTransaction ="rechangue";
 				transdata.day = System.DateTime.Now.ToString("d-MMM-yyyy-HH-mm-ss-f");
 				transdata.targetUser ="+573003268650";
 				
